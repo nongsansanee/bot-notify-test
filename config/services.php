@@ -30,4 +30,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'line' => [
+        'client_id'     => env('LINE_CLIENT_ID'),
+        'client_secret' => env('LINE_CLIENT_SECRET'),
+        'redirect'      => env('LINE_CLIENT_REDIRECT'),
+        'bot_link_url'  => env('LINE_BOT_LINK_URL'),
+        'base_endpoint'  => env('LINE_BASE_ENDPOINT'),
+        'bot_token'     => env('LINE_BOT_TOKEN'),
+    ],
+
 ];

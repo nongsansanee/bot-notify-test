@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LINEWebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// webhooks
+Route::post('/webhooks/line', LINEWebhookController::class);
 
 Route::post('noti',function(){
  //return "test noti";
