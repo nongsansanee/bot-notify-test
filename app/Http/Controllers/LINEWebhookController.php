@@ -129,8 +129,18 @@ class LINEWebhookController extends Controller
         //     Log::info('token_push_message not true');
         //     return 'token_push_message not true';
         // }
+        $baseEndpoint = config('services.line.base_endpoint');
+
+        $client = Http::withToken(config('services.line.bot_token'));
+
+        if (! Request::has('events')) { // this should never happend
+            Log::error('LINE bad response');
+
+            return abort(400);
+        }
+
         Log::info('user='.env('LINE_USER_ID_TEST_NONG'));
-        $this->client->post($this->baseEndpoint.'message/push', [
+        $client->post($baseEndpoint.'message/push', [
             'to' => env('LINE_USER_ID_TEST_NONG'),
             'messages' => 'hello test',
         ]);
