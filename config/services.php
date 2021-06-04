@@ -37,6 +37,7 @@ return [
         'bot_link_url'  => env('LINE_BOT_LINK_URL'),
         'base_endpoint'  => env('LINE_BASE_ENDPOINT'),
         'bot_token'     => env('LINE_BOT_TOKEN'),
+        'token_push_message' => env('TOKEN_PUSH_MESSAGE'),
     ],
 
 ];

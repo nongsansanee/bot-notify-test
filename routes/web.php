@@ -21,4 +21,7 @@ Route::get('/', function () {
 // webhooks line-bot TestMedNotify
 Route::post('/webhooks/line-bot-simed', LINEWebhookController::class);
 
+Route::post('/webhooks/line-bot-simed/push-message', [LINEWebhookController::class,'pushMessage']);
+
+
 

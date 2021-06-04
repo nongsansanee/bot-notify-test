@@ -52,11 +52,11 @@ class LINEWebhookController extends Controller
     }
     protected function follow($event)
     {
-        Log::info('guest unfollow LINE bot '.$event['type']);
-        Log::info('guest unfollow LINE bot '.$event['mode']);
-        Log::info('guest unfollow LINE bot '.$event['timestamp']);
-        Log::info('guest unfollow LINE bot '.$event['source']['userId']);
-        return 'guest follow LINE bot';
+        Log::info('guest follow LINE bot '.$event['type']);
+        Log::info('guest follow LINE bot '.$event['mode']);
+        Log::info('guest follow LINE bot '.$event['timestamp']);
+        Log::info('guest follow LINE bot '.$event['source']['userId']);
+        //return 'guest follow LINE bot';
         // get profile
         $profile = $this->getProfile($event['source']['userId']);
      
@@ -85,7 +85,7 @@ class LINEWebhookController extends Controller
         Log::info('guest unfollow LINE bot '.$event['mode']);
         Log::info('guest unfollow LINE bot '.$event['timestamp']);
         Log::info('guest unfollow LINE bot '.$event['source']['userId']);
-        return 'guest unfollow LINE bot';
+        //return 'guest unfollow LINE bot';
 
         if ($this->user) {
             $this->user->disableNotificationChannel('line');
@@ -96,12 +96,12 @@ class LINEWebhookController extends Controller
 
     protected function message($event)
     {
-        Log::info('guest unfollow LINE bot '.$event['type']);
-        Log::info('guest unfollow LINE bot '.$event['mode']);
-        Log::info('guest unfollow LINE bot '.$event['timestamp']);
-        Log::info('guest unfollow LINE bot '.$event['source']['userId']);
-        Log::info('guest unfollow LINE bot '.$event['message']['type']);
-        Log::info('guest unfollow LINE bot '.$event['message']['text']);
+        Log::info('guest message LINE bot '.$event['type']);
+        Log::info('guest message LINE bot '.$event['mode']);
+        Log::info('guest message LINE bot '.$event['timestamp']);
+        Log::info('guest message LINE bot '.$event['source']['userId']);
+        Log::info('guest message LINE bot '.$event['message']['type']);
+        Log::info('guest message LINE bot '.$event['message']['text']);
         return 'guest message LINE bot';
 
         if (! $this->user) {
@@ -123,12 +123,19 @@ class LINEWebhookController extends Controller
         ]);
     }
 
-    protected function pushMessage($userId, $messages)
+    protected function pushMessage()
     {
+        // if(!$token==config('services.line.token_push_message')){
+        //     Log::info('token_push_message not true');
+        //     return 'token_push_message not true';
+        // }
+        Log::info('user='.env('LINE_USER_ID_TEST_NONG'));
         $this->client->post($this->baseEndpoint.'message/push', [
-            'to' => $userId,
-            'messages' => $messages,
+            'to' => env('LINE_USER_ID_TEST_NONG'),
+            'messages' => 'hello test',
         ]);
+
+        Log::info('push message success');
     }
 
     protected function getProfile($userId)
