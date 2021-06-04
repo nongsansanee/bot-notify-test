@@ -96,17 +96,19 @@ class LINEWebhookController extends Controller
 
     protected function message($event)
     {
-        Log::info('guest message LINE bot '.$event['type']);
-        Log::info('guest message LINE bot '.$event['mode']);
-        Log::info('guest message LINE bot '.$event['timestamp']);
-        Log::info('guest message LINE bot '.$event['source']['userId']);
-        Log::info('guest message LINE bot '.$event['message']['type']);
-        Log::info('guest message LINE bot '.$event['message']['text']);
-        return 'guest message LINE bot';
+        Log::info('guest message LINE bot type = '.$event['type']);
+        Log::info('guest message LINE bot type = '.$event['type']);
+        Log::info('guest message LINE bot timestamp = '.$event['timestamp']);
+        Log::info('guest message LINE bot user ='.$event['source']['userId']);
+        Log::info('guest message LINE bot type ='.$event['message']['type']);
+        Log::info('guest message LINE bot text ='.$event['message']['text']);
+        Log::info('guest message LINE bot replyToken ='.$event['replyToken']);
+       // return 'guest message LINE bot';
 
         if (! $this->user) {
-            $profile = $this->getProfile($event['source']['userId']);
-            $this->replyUnauthorized($event['replyToken'], $profile['displayName']);
+            //$profile = $this->getProfile($event['source']['userId']);
+           // $this->replyUnauthorized($event['replyToken'], $profile['displayName']);
+           $this->replyUnauthorized($event['replyToken'], 'nongnee');
         }
         $messages = [[
             'type' => 'text',
