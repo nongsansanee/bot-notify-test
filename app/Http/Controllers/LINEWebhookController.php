@@ -34,7 +34,7 @@ class LINEWebhookController extends Controller
         }
 
         foreach (Request::input('events') as $event) {
-            $this->user = User::where('profile->social->id', $event['source']['userId'])->first();
+           // $this->user = User::where('profile->social->id', $event['source']['userId'])->first();
             if ($event['type'] == 'follow') {
                 $this->follow($event);
             } elseif ($event['type'] == 'unfollow') {
@@ -52,9 +52,12 @@ class LINEWebhookController extends Controller
     }
     protected function follow($event)
     {
+       
+        Log::info('guest add LINE bot '.$event);
+        return 'guest add LINE bot';
         // get profile
         $profile = $this->getProfile($event['source']['userId']);
-
+     
         if (! $this->user) {
             Log::info('guest add LINE bot '.$event['source']['userId']);
             $this->replyUnauthorized($event['replyToken'], $profile['displayName']);
@@ -76,6 +79,9 @@ class LINEWebhookController extends Controller
 
     protected function unfollow($event)
     {
+        Log::info('guest unfollow LINE bot '.$event);
+        return 'guest unfollow LINE bot';
+
         if ($this->user) {
             $this->user->disableNotificationChannel('line');
         } else {
@@ -85,6 +91,9 @@ class LINEWebhookController extends Controller
 
     protected function message($event)
     {
+        Log::info('guest message LINE bot '.$event);
+        return 'guest message LINE bot';
+
         if (! $this->user) {
             $profile = $this->getProfile($event['source']['userId']);
             $this->replyUnauthorized($event['replyToken'], $profile['displayName']);
