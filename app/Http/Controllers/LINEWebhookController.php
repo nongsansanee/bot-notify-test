@@ -139,11 +139,18 @@ class LINEWebhookController extends Controller
         //     return abort(400);
         // }
 
+        $messages = [
+            ['type' => 'text', 'text' => 'hello test'],
+        ];
+
         Log::info('user='.env('LINE_USER_ID_TEST_NONG'));
         $client->post($baseEndpoint.'/message/push', [
             'to' => env('LINE_USER_ID_TEST_NONG'),
-            'messages' => 'hello test',
+            'messages' => $messages,
         ]);
+        
+        Log::info($client->response());
+        //return $response->json();
 
         Log::info('push message success');
     }
