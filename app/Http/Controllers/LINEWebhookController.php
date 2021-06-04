@@ -22,7 +22,7 @@ class LINEWebhookController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return ('hello line-bot-simed');
+        //return ('hello line-bot-simed');
         $this->baseEndpoint = config('services.line.base_endpoint');
 
         $this->client = Http::withToken(config('services.line.bot_token'));
