@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        '/webhooks/line-bot-simed'
+        '/webhooks/line-bot-simed',
+        '/webhooks/line-bot-simed/push-message',
     ];
 }
