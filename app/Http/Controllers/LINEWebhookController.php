@@ -107,6 +107,7 @@ class LINEWebhookController extends Controller
 
        // if (! $this->user) {
             $profile = $this->getProfile($event['source']['userId']);
+            Log::info('guest message LINE bot displayName ='.$profile['displayName']);
             $this->replyUnauthorized($event['replyToken'], $profile['displayName']);
           // $this->replyUnauthorized($event['replyToken'], 'nongnee');
         //}
@@ -168,8 +169,9 @@ class LINEWebhookController extends Controller
     {
         $this->replyMessage($token, [[
             'type' => 'text',
-            'text' => str_replace('PLACEHOLDER', $username, config('messages.bot_user_not_registred'))."\n\n เมื่อทำการลงทะเบียนแล้วอย่าลืม block และ unblock bot ด้วยน๊า 🤗",
-            'text' => __('reply_messages.bot.user_not_registered', ['PLACEHOLDER' => $username, 'STOP' => 'block', 'RESTART' => 'unblock']),
+            'text' => 'ตอบกลับแล้วจ้า',
+            //'text' => str_replace('PLACEHOLDER', $username, config('messages.bot_user_not_registred'))."\n\n เมื่อทำการลงทะเบียนแล้วอย่าลืม block และ unblock bot ด้วยน๊า 🤗",
+            //'text' => __('reply_messages.bot.user_not_registered', ['PLACEHOLDER' => $username, 'STOP' => 'block', 'RESTART' => 'unblock']),
         ]]);
     }
 }
