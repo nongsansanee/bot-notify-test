@@ -133,11 +133,11 @@ class LINEWebhookController extends Controller
 
         $client = Http::withToken(config('services.line.bot_token'));
 
-        if (! Request::has('events')) { // this should never happend
-            Log::error('LINE bad response');
+        // if (! Request::has('events')) { // this should never happend
+        //     Log::error('LINE bad response');
 
-            return abort(400);
-        }
+        //     return abort(400);
+        // }
 
         Log::info('user='.env('LINE_USER_ID_TEST_NONG'));
         $client->post($baseEndpoint.'message/push', [
