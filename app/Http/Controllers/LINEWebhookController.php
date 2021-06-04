@@ -105,11 +105,11 @@ class LINEWebhookController extends Controller
         Log::info('guest message LINE bot replyToken ='.$event['replyToken']);
        // return 'guest message LINE bot';
 
-        if (! $this->user) {
-            //$profile = $this->getProfile($event['source']['userId']);
-           // $this->replyUnauthorized($event['replyToken'], $profile['displayName']);
-           $this->replyUnauthorized($event['replyToken'], 'nongnee');
-        }
+       // if (! $this->user) {
+            $profile = $this->getProfile($event['source']['userId']);
+            $this->replyUnauthorized($event['replyToken'], $profile['displayName']);
+          // $this->replyUnauthorized($event['replyToken'], 'nongnee');
+        //}
         $messages = [[
             'type' => 'text',
             'text' => $event['message']['text'],
@@ -119,7 +119,7 @@ class LINEWebhookController extends Controller
 
     protected function replyMessage($replyToken, $messages)
     {
-        $this->client->post($this->baseEndpoint.'message/reply', [
+        $this->client->post($this->baseEndpoint.'/message/reply', [
             'replyToken' => $replyToken,
             'messages' => $messages,
         ]);
@@ -159,7 +159,7 @@ class LINEWebhookController extends Controller
 
     protected function getProfile($userId)
     {
-        $response = $this->client->get($this->baseEndpoint.'profile/'.$userId);
+        $response = $this->client->get($this->baseEndpoint.'/profile/'.$userId);
 
         return $response->json();
     }
