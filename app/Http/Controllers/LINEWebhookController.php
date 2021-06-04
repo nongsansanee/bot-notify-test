@@ -52,9 +52,11 @@ class LINEWebhookController extends Controller
     }
     protected function follow($event)
     {
-       
-        Log::info('guest add LINE bot '.$event);
-        return 'guest add LINE bot';
+        Log::info('guest unfollow LINE bot '.$event['type']);
+        Log::info('guest unfollow LINE bot '.$event['mode']);
+        Log::info('guest unfollow LINE bot '.$event['timestamp']);
+        Log::info('guest unfollow LINE bot '.$event['source']['userId']);
+        return 'guest follow LINE bot';
         // get profile
         $profile = $this->getProfile($event['source']['userId']);
      
@@ -79,7 +81,10 @@ class LINEWebhookController extends Controller
 
     protected function unfollow($event)
     {
-        Log::info('guest unfollow LINE bot '.$event);
+        Log::info('guest unfollow LINE bot '.$event['type']);
+        Log::info('guest unfollow LINE bot '.$event['mode']);
+        Log::info('guest unfollow LINE bot '.$event['timestamp']);
+        Log::info('guest unfollow LINE bot '.$event['source']['userId']);
         return 'guest unfollow LINE bot';
 
         if ($this->user) {
@@ -91,7 +96,12 @@ class LINEWebhookController extends Controller
 
     protected function message($event)
     {
-        Log::info('guest message LINE bot '.$event);
+        Log::info('guest unfollow LINE bot '.$event['type']);
+        Log::info('guest unfollow LINE bot '.$event['mode']);
+        Log::info('guest unfollow LINE bot '.$event['timestamp']);
+        Log::info('guest unfollow LINE bot '.$event['source']['userId']);
+        Log::info('guest unfollow LINE bot '.$event['message']['type']);
+        Log::info('guest unfollow LINE bot '.$event['message']['text']);
         return 'guest message LINE bot';
 
         if (! $this->user) {
